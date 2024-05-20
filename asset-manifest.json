@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/PGHT-V2/static/css/main.d9da1378.css",
-    "main.js": "/PGHT-V2/static/js/main.184564d1.js",
+    "main.js": "/PGHT-V2/static/js/main.faec15a4.js",
     "static/js/453.a7d397a0.chunk.js": "/PGHT-V2/static/js/453.a7d397a0.chunk.js",
     "static/media/logo.png": "/PGHT-V2/static/media/logo.0e48c4ad0c4279835f2f.png",
     "index.html": "/PGHT-V2/index.html",
     "main.d9da1378.css.map": "/PGHT-V2/static/css/main.d9da1378.css.map",
-    "main.184564d1.js.map": "/PGHT-V2/static/js/main.184564d1.js.map",
+    "main.faec15a4.js.map": "/PGHT-V2/static/js/main.faec15a4.js.map",
     "453.a7d397a0.chunk.js.map": "/PGHT-V2/static/js/453.a7d397a0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9da1378.css",
-    "static/js/main.184564d1.js"
+    "static/js/main.faec15a4.js"
   ]
 }
