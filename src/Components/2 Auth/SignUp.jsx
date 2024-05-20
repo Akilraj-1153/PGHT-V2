@@ -140,7 +140,7 @@ function SignUp({ Logoimg }) {
             </div>
             <div className='w-full h-[12vh] flex flex-col '>
               <label htmlFor='password'>Password </label>
-              <div className='flex gap-5 w-full bg-white rounded-lg justify-center items-center flex'>
+              <div className='flex gap-5 w-full bg-white rounded-lg justify-center items-center '>
               <input id='password' {...register('password', { required: true })} className='h-[6vh] w-[90%] rounded-lg outline-none text-black p-2' type={isvisible}></input>
 
               <button onClick={handlepasswordvisible} className='mr-5'>{isvisible === 'password'? <FaEyeSlash color='black' size={25}></FaEyeSlash> :<IoEyeSharp color='black' size={25}></IoEyeSharp>} </button>
