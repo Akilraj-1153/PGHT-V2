@@ -115,11 +115,11 @@ function SignUp({ Logoimg }) {
 
 
   function handlepasswordvisible(){
-    setisVisible(isvisible == 'password'? 'text':'password')
+    setisVisible(isvisible === 'password'? 'text':'password')
   }
 
   function handleConfirmpasswordvisible(){
-    setisCPVisible(isCPvisible == 'password'? 'text':'password')
+    setisCPVisible(isCPvisible === 'password'? 'text':'password')
   }
 
 
@@ -143,7 +143,7 @@ function SignUp({ Logoimg }) {
               <div className='flex gap-5 w-full bg-white rounded-lg justify-center items-center flex'>
               <input id='password' {...register('password', { required: true })} className='h-[6vh] w-[90%] rounded-lg outline-none text-black p-2' type={isvisible}></input>
 
-              <button onClick={handlepasswordvisible} className='mr-5'>{isvisible == 'password'? <FaEyeSlash color='black' size={25}></FaEyeSlash> :<IoEyeSharp color='black' size={25}></IoEyeSharp>} </button>
+              <button onClick={handlepasswordvisible} className='mr-5'>{isvisible === 'password'? <FaEyeSlash color='black' size={25}></FaEyeSlash> :<IoEyeSharp color='black' size={25}></IoEyeSharp>} </button>
 
               </div>
               {errors.password && <p className='p-2 text-red-900'>Password is required.</p>}
@@ -151,10 +151,10 @@ function SignUp({ Logoimg }) {
 
             <div className='w-full h-[12vh] flex flex-col '>
               <label htmlFor='confirm_password'>Confirm Password </label>
-              <div className='flex gap-5 w-full bg-white rounded-lg justify-center items-center flex'>
+              <div className='flex gap-5 w-full bg-white rounded-lg justify-center items-center '>
               <input id='confirm_password' {...register('confirm_password', { required: true })} className='h-[6vh] w-[90%] rounded-lg outline-none text-black p-2' type={isCPvisible}></input>
 
-              <button onClick={handleConfirmpasswordvisible} className='mr-5'>{isCPvisible == 'password'? <FaEyeSlash color='black' size={25}></FaEyeSlash> :<IoEyeSharp color='black' size={25}></IoEyeSharp>} </button>
+              <button onClick={handleConfirmpasswordvisible} className='mr-5'>{isCPvisible === 'password'? <FaEyeSlash color='black' size={25}></FaEyeSlash> :<IoEyeSharp color='black' size={25}></IoEyeSharp>} </button>
 
               </div>
               {errors.confirm_password && <p className='p-2 text-red-900'>Confirm Password is required.</p>}

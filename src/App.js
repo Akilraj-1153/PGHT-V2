@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { LoginState } from './HandleData/atoms'
 import { useEffect } from 'react'
+import MainApp from './Components/3 MainApp/MainApp'
 
 function App() {
   const navigation =useNavigate()
@@ -30,7 +31,7 @@ function App() {
           <Route path='/' element={ <Intro Logoimg={Logoimg}></Intro>}></Route>
           <Route path='/signup' element={<SignUp Logoimg={Logoimg}></SignUp>}></Route>
           <Route path='/login' element={!isLoggedIn &&  <LogIn Logoimg={Logoimg}></LogIn>}></Route>
-          <Route path='/mainApp/*' element={isLoggedIn && <MainApp Logoimg={Logo}></MainApp>}></Route>
+          <Route path='/mainApp/*' element={isLoggedIn && <MainApp Logoimg={Logoimg}></MainApp>}></Route>
         </Routes>
         </div>
     </ImageContext.Provider>
