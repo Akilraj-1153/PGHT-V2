@@ -30,7 +30,7 @@ function App() {
           <Route path='/' element={ <Intro Logoimg={Logoimg}></Intro>}></Route>
           <Route path='/signup' element={<SignUp Logoimg={Logoimg}></SignUp>}></Route>
           <Route path='/login' element={!isLoggedIn &&  <LogIn Logoimg={Logoimg}></LogIn>}></Route>
-          {/* <Route path='/mainApp/*' element={isLoggedIn && <MainApp Logoimg={Logo}></MainApp>}></Route> */}
+          <Route path='/mainApp/*' element={isLoggedIn && <MainApp Logoimg={Logo}></MainApp>}></Route>
         </Routes>
         </div>
     </ImageContext.Provider>
