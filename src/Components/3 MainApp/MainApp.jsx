@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from '../0 NavBar/NavBar'
 // import AddHabits  from '../4 AddHabits/AddHabits'
 // import MyHabits from '../5 MyHabits/MyHabits'
-// import BMI from '../6 BMI/BMI'
+import BMI from '../6 BMI/BMI'
 import Profile from '../7 Profile/Profile'
 import HomePage from '../4 Home/HomePage';
 import ProfileEdit from '../9 ProfileEdit/ProfileEdit';
@@ -21,7 +21,7 @@ function MainApp() {
             <Route path="/homepage/*" element={<HomePage />} ></Route>
             {/* <Route path="/addhabits/*" element={<AddHabits />} /> */}
             {/* <Route path="/myhabits/*" element={<MyHabits />} /> */}
-            {/* <Route path="/bmi/*" element={<BMI />} /> */}
+            <Route path="/bmi/*" element={<BMI />} />
             <Route path="/profile/*" element={<Profile />} />
             <Route path='/editprofile' element={<ProfileEdit></ProfileEdit>}></Route>
           </Routes>
