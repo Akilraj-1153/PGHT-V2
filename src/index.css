@@ -5,6 +5,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Mate+SC&family=Mate:ital@0;1&family=Protest+Revolution&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 ::-webkit-scrollbar{
-  width: 0;
-  height: 0;
+  width: 0px;
+  height: 0px;
+  
+}
+
+.myhabit::-webkit-scrollbar{
+  width: 5px;
+  height: 5px;
+  border-radius: 10px;
+}
+
+.myhabit::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+
+.myhabit::-webkit-scrollbar-button{
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+  background:white;
+  border-radius: 10px;
+
+}
+.myhabit::-webkit-scrollbar-corner{
+  background:transparent;
 }

@@ -75,11 +75,11 @@ function AddHabits() {
       </div>
       </div>
       <div className='xs:h-[55%] xs:w-[80%] lg:h-full lg:w-[30%] rounded-xl  p-2 gap-5 flex flex-col'>
-      <div className='h-full w-full rounded-xl border-2 bg-whit'>
+      <div className='h-full w-full rounded-xl border-2 bg-whit p-2'>
         <div className='h-[10%] w-full text-center shadow-xl font-mateSc text-white justify-center items-center flex'>
           <h1>Suggetions</h1>
         </div>
-        <div className='h-[87%] w-full rounded-b-xl  bg-whit overflow-scroll p-2'>
+        <div className='myhabit h-[87%] w-full rounded-b-xl  bg-whit overflow-scroll p-2'>
         {
             SuggestedHabit.map((habits) =>(
               <div key={habits.id} className='text-black text-center p-2 w-full  flex  justify-center items-center'>
