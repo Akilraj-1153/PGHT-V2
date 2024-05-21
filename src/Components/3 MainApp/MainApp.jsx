@@ -4,9 +4,9 @@ import NavBar from '../0 NavBar/NavBar'
 // import AddHabits  from '../4 AddHabits/AddHabits'
 // import MyHabits from '../5 MyHabits/MyHabits'
 // import BMI from '../6 BMI/BMI'
-// import Profile from '../7 Profile/Profile'
+import Profile from '../7 Profile/Profile'
 import HomePage from '../4 Home/HomePage';
-// import ProfileEdit from '../9 ProfileEdit/ProfileEdit';
+import ProfileEdit from '../9 ProfileEdit/ProfileEdit';
 
 function MainApp() {
 
@@ -19,11 +19,11 @@ function MainApp() {
       <div className=' h-[90vh] md:h-[93vh] w-full flex justify-center items-center'>
           <Routes>
             <Route path="/homepage/*" element={<HomePage />} ></Route>
-            {/* <Route path="/addhabits/*" element={<AddHabits />} />
-            <Route path="/myhabits/*" element={<MyHabits />} />
-            <Route path="/bmi/*" element={<BMI />} />
+            {/* <Route path="/addhabits/*" element={<AddHabits />} /> */}
+            {/* <Route path="/myhabits/*" element={<MyHabits />} /> */}
+            {/* <Route path="/bmi/*" element={<BMI />} /> */}
             <Route path="/profile/*" element={<Profile />} />
-            <Route path='/editprofile' element={<ProfileEdit></ProfileEdit>}></Route> */}
+            <Route path='/editprofile' element={<ProfileEdit></ProfileEdit>}></Route>
           </Routes>
       </div>
     </div>

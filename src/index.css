@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&family=Mate:ital@0;1&family=Protest+Revolution&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
