@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from '../0 NavBar/NavBar'
-// import AddHabits  from '../4 AddHabits/AddHabits'
+import AddHabits  from '../4 AddHabits/AddHabits'
 // import MyHabits from '../5 MyHabits/MyHabits'
 import BMI from '../6 BMI/BMI'
 import Profile from '../7 Profile/Profile'
@@ -19,7 +19,7 @@ function MainApp() {
       <div className=' h-[90vh] md:h-[93vh] w-full flex justify-center items-center'>
           <Routes>
             <Route path="/homepage/*" element={<HomePage />} ></Route>
-            {/* <Route path="/addhabits/*" element={<AddHabits />} /> */}
+            <Route path="/addhabits/*" element={<AddHabits />} />
             {/* <Route path="/myhabits/*" element={<MyHabits />} /> */}
             <Route path="/bmi/*" element={<BMI />} />
             <Route path="/profile/*" element={<Profile />} />

@@ -29,9 +29,9 @@ function BMI() {
     return '';
   };
   return (
-    <div className=' h-auto w-auto max-w-[90%] lg:max-w-[60%] rounded-xl p-2 border-2'>
+    <div className=' h-auto w-auto max-w-[90%] lg:max-w-[60%] rounded-xl p-4 border-2'>
       <h1 className='h-[10%] text-2xl font-mateSc w-full justify-center items-center flex'>BMI CALCULATOR</h1>
-      <div className='h-auto w-full flex flex-col md:flex-col '>
+      <div className='h-auto w-full flex flex-col md:flex-col  '>
             <div className='w-full xs:flex-col  sm:flex-row flex md:flex-col lg:flex-col justify-center items-center h-full gap-2 '>
             <div className='mb-4'>
             <label className='block text-white mb-2'>Height (cm):</label>
