@@ -1,23 +1,15 @@
-import React from 'react';
-import { SuggestedHabit } from '../../HandleData/Data';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { currentHabit, myHabits } from '../../HandleData/atoms';
-import { userEmail } from '../../HandleData/atoms';
-import { setDoc } from 'firebase/firestore';
-import { doc } from 'firebase/firestore';
-import { db } from '../../Config/Config';
-import { collection } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
-import { getDoc } from 'firebase/firestore';
+import { db } from '../../Config/Config';
+import { myHabits, selectedHabitsforReport } from '../../HandleData/atoms';
 import HabitReport from '../10 HabitReport/HabitReport';
-import { selectedHabitsforReport } from '../../HandleData/atoms';
 
 function MyHabits() {
   const [AllHabits, setAllHabits] = useRecoilState(myHabits);
   const [HabitForReport, setHabitForReport] = useRecoilState(selectedHabitsforReport);
-  console.log(AllHabits);
 
   useEffect(() => {
     const fetchHabits = async () => {
@@ -44,23 +36,33 @@ function MyHabits() {
     setHabitForReport(habit);
   };
 
+  const sortedHabits = () => {
+    if (AllHabits) {
+      return Object.keys(AllHabits).sort((a, b) => {
+        const dateA = new Date(AllHabits[a].AddedAt);
+        const dateB = new Date(AllHabits[b].AddedAt);
+        return dateA - dateB; // Ascending order
+      });
+    }
+    return [];
+  };
+
   return (
     <div className='h-full w-full flex justify-center items-center gap-5 xs:flex-col sm:flex-row'>
       <div className='xs:h-[30%] xs:w-[80%] sm:h-[90%] sm:w-[40%] lg:w-[20%] border-2 rounded-xl p-2 overflow-hidden'>
         <h1 className='text-center font-mateSc p-2'>My Habits</h1>
         <div className='myhabit h-fit max-h-[90%] overflow-scroll'>
-                {AllHabits &&
-          Object.keys(AllHabits).map((habit, index) => (
-            <div key={habit} className='text-black p-2 w-full flex justify-center items-center'>
-              <p
-                className='flex cursor-pointer justify-center items-center w-[80%] h-fit text-center p-2 rounded-sm bg-white shadow-sm shadow-white'
-                onClick={() => handleReport(habit)}
-              >
-                {habit}
-              </p>
-              <p className='text-white'>{index}</p>
-            </div>
-          ))}
+          {AllHabits &&
+            sortedHabits().map((habit, index) => (
+              <div key={habit} className='text-black p-2 w-full flex justify-center items-center'>
+                <p
+                  className='flex cursor-pointer justify-center items-center w-[80%] h-fit text-center p-2 rounded-sm bg-white shadow-sm shadow-white'
+                  onClick={() => handleReport(habit)}
+                >
+                  {habit}
+                </p>
+              </div>
+            ))}
         </div>
       </div>
       <div className='xs:h-[60%] xs:w-[80%] sm:h-[90%] sm:w-[50%] lg:w-[70%] border-2 rounded-xl'>
