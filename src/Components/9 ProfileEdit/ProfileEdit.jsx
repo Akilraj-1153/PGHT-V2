@@ -65,8 +65,14 @@ function ProfileEdit() {
 
     const handleUserImage = (e) => {
         const image = e.target.files[0];
-        setImageAsFile(image);
-        setDefaultUserImage(URL.createObjectURL(image)); // Update default user image preview
+        if (image) {
+            setImageAsFile(image);
+            setDefaultUserImage(URL.createObjectURL(image)); // Update default user image preview
+        } else {
+            // Handle the case where no file is selected
+            setImageAsFile('');
+            setDefaultUserImage(''); // or set to a default image or clear the preview
+        }
     };
 
     const handleProfileSave = async () => {

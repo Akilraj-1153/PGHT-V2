@@ -95,7 +95,6 @@ function HomePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuote((prev) => (prev === HabitQuotes.length - 1 ? 0 : prev + 1));
-      console.log('rendered');
     }, 1000);
     return () => clearInterval(interval);
   }, []);

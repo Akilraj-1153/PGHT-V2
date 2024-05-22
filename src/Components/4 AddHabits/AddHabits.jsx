@@ -26,7 +26,7 @@ function AddHabits() {
           const userHabit = userHabitSnapshot.data();
           setAllHabits(userHabit.Habits);
         } else {
-          toast.error('User Habits not found!', { autoClose: 2000 });
+          toast.info('Start Adding the Habits ', { autoClose: 2000 });
         }
       } catch (error) {
         toast.error('Failed to fetch Habits!', { autoClose: 2000 });

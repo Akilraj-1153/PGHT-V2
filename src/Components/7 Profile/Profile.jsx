@@ -37,12 +37,13 @@ function Profile() {
     const fetchUserDetails = async () => {
       try {
         if (provider === 'google.com') {
-          setDefaultUserImage(pghtuser.photoURL);
           setName(pghtuser.displayName);
           setEmail(pghtuser.email);
+          setDefaultUserImage(pghtuser.photoURL);
           return;
         }
-        const userEmail = JSON.parse(localStorage.getItem('user')).email;
+        else if (provider === 'password'){
+          const userEmail = JSON.parse(localStorage.getItem('user')).email;
         const userDocRef = doc(db, 'UserDetails', userEmail);
         const userDocSnapshot = await getDoc(userDocRef);
         if (userDocSnapshot.exists()) {
@@ -61,6 +62,8 @@ function Profile() {
         } else {
           toast.error('User details not found!', { autoClose: 2000 });
         }
+        }
+        
       } catch (error) {
         toast.error('Error fetching user details!', { autoClose: 2000 });
       }
@@ -111,7 +114,7 @@ function Profile() {
         <hr></hr>
         <div className="h-[93%] w-full flex flex-col lg:flex-row">
           <div className="xs:h-2/3 xs:w-full  lg:h-full lg:w-1/2 flex justify-center items-center">
-          <div className='h-[30vh] w-[30vh]  rounded-full border-4 border-white/40 flex flex-col overflow-hidden'>
+          <div className='h-[30vh] w-[30vh]  rounded-full border-4 border-white/40 flex flex-col overflow-hidden flex justify-center items-center'>
                             <img className='rounded-full' src={defaultUserImage} alt='user-avatar' />
                         </div>
           </div>
