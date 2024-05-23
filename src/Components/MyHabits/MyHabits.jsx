@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { db } from '../../Config/Config';
 import { myHabits, selectedHabitsforReport } from '../../HandleData/atoms';
-import HabitReport from '../10 HabitReport/HabitReport';
+import HabitReport from '../HabitReport/HabitReport';
 
 function MyHabits() {
   const [AllHabits, setAllHabits] = useRecoilState(myHabits);

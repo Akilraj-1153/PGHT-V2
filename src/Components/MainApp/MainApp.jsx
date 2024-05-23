@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from '../0 NavBar/NavBar'
-import AddHabits  from '../4 AddHabits/AddHabits'
-import MyHabits from '../5 MyHabits/MyHabits'
-import BMI from '../6 BMI/BMI'
-import Profile from '../7 Profile/Profile'
-import HomePage from '../4 Home/HomePage';
-import ProfileEdit from '../9 ProfileEdit/ProfileEdit';
+import NavBar from '../NavBar/NavBar'
+import AddHabits  from '../AddHabits/AddHabits'
+import MyHabits from '../MyHabits/MyHabits'
+import BMI from '../BMI/BMI'
+import Profile from '../Profile/Profile'
+import HomePage from '../Home/HomePage';
+import ProfileEdit from '../ProfileEdit/ProfileEdit';
 
 function MainApp() {
 
