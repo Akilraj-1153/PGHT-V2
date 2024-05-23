@@ -60,7 +60,7 @@ function NavBar() {
 
     </div> 
     {isNavActive &&
-    <div className=' bg-white h-fit w-full  flex justify-center  p-4 w-full flex flex-col font-bold gap-4 md:hidden shadow-xl'>
+    <div className=' bg-white h-fit w-full  flex justify-center  flex-col font-bold gap-4 md:hidden shadow-xl'>
           <Link className='mobilenav' onClick={handleNavActive} to='homepage'>Home</Link>
           <Link className='mobilenav' onClick={handleNavActive} to='addhabits'>Add Habits</Link>
           <Link className='mobilenav' onClick={handleNavActive} to='myhabits'>My Habits</Link>
