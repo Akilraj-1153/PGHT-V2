@@ -126,7 +126,7 @@ function ProfileEdit() {
                 <hr />
                 <div className="h-[93%] w-full flex flex-col lg:flex-row">
                     <div className="xs:h-1/2 xs:w-full lg:h-full lg:w-1/2 flex flex-col justify-center items-center">
-                        <div className='h-[30vh] w-[30vh] rounded-full border-4 border-white/40 flex flex-col overflow-hidden '>
+                        <div className='h-[30vh] w-[30vh] rounded-full border-4 border-white/40 flex flex-col overflow-hidden flex justify-center items-center'>
                             <img src={defaultUserImage} alt='user-avatar' />
                         </div>
                     </div>

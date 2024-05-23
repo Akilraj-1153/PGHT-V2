@@ -50,7 +50,7 @@ function AddHabits() {
       return;
     }
 
-    // Ensure AllHabits is initialized as an object
+
     const updatedHabits = { ...AllHabits } || {};
 
     if (selectedHabits in updatedHabits) {

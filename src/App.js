@@ -12,6 +12,8 @@ import { useState } from 'react'
 import { LoginState } from './HandleData/atoms'
 import { useEffect } from 'react'
 import MainApp from './Components/3 MainApp/MainApp'
+import CheckConnection from './Components/Network/CheckConnection'
+
 
 function App() {
   const navigation =useNavigate()
@@ -25,7 +27,8 @@ function App() {
   }, []);
 
   return (
-      <ImageContext.Provider value={logo}>
+    <CheckConnection>
+  <ImageContext.Provider value={logo}>
       <div className='h-screen w-screen  bg-black text-white'>
         <Routes>
           <Route path='/' element={ <Intro Logoimg={Logoimg}></Intro>}></Route>
@@ -35,6 +38,8 @@ function App() {
         </Routes>
         </div>
     </ImageContext.Provider>
+    </CheckConnection>
+      
   )
 }
 
