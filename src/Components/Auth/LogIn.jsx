@@ -33,10 +33,7 @@ function LogIn({ Logoimg }) {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      console.log(userCredential)
       const user = userCredential.user;
-      console.log(user)
-      console.log(user.accessToken)
       localStorage.setItem('token', user.accessToken);
       localStorage.setItem('user', JSON.stringify(user));
       setIsLoggedIn(true)

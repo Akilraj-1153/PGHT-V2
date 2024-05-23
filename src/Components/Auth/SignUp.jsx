@@ -56,7 +56,7 @@ function SignUp({ Logoimg }) {
     const { fullName, email, password, confirm_password } = data;
 
     if (password !== confirm_password) {
-      console.error("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
@@ -82,14 +82,12 @@ function SignUp({ Logoimg }) {
               (snapshot) => {
                   // Progress monitoring
                   const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log(`Upload is ${progress}% done`);
               },
               (error) => {
-                  console.error('Error uploading image:', error);
+                  toast.error('Error Setting Up Your Account');
               },
               () => {
-                  // Upload complete
-                  console.log('Image uploaded successfully');
+                
               }
           );
       }
@@ -98,7 +96,6 @@ function SignUp({ Logoimg }) {
 
       
     } catch (error) {
-      console.error("Error signing up:", error.message);
       toast.error('Failed to Signup,Try Again.', { autoClose: 2000 });
 
     }

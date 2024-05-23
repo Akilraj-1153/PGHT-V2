@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../Config/Config';
 import { myHabits, selectedHabitsforReport } from '../../HandleData/atoms';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaBell } from "react-icons/fa";
-import OneSignal from 'react-onesignal';
-
-const OneSignalAppId = 'YOUR_ONESIGNAL_APP_ID';
 
 function HabitReport({ habit }) {
   const [selectedDates, setSelectedDates] = useState([]);
@@ -22,12 +21,6 @@ function HabitReport({ habit }) {
   const [notifyTime, setNotifyTime] = useState('');
 
   useEffect(() => {
-    OneSignal.init({
-      appId: '2247f176-0a44-473d-985a-8ad111a31b8c',
-      notifyButton: {
-        enable: true,
-      },
-    });
     fetchHabitData();
   }, [HabitForReport]);
 
@@ -104,28 +97,11 @@ function HabitReport({ habit }) {
   const handleNotifyTimeSave = async () => {
     await saveDatesToFirestore();
     setIsNotify(false);
-    scheduleDailyNotification(notifyTime);
     toast.success('Notification time saved successfully!', { autoClose: 2000 });
   };
 
   const handleNotifyTimeChange = (event) => {
     setNotifyTime(event.target.value);
-  };
-
-  const scheduleDailyNotification = (time) => {
-    const [hours, minutes] = time.split(':');
-    const notifyTime = new Date();
-    notifyTime.setHours(hours);
-    notifyTime.setMinutes(minutes);
-    notifyTime.setSeconds(0);
-
-    OneSignal.sendSelfNotification(
-      "Habit Reminder",
-      "It's time to follow your habit!",
-      "",
-      { data: { habit } },
-      [{ title: "Check now", action: "check" }]
-    );
   };
 
   return (
