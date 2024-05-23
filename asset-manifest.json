@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/PGHT-V2/static/css/main.d9da1378.css",
-    "main.js": "/PGHT-V2/static/js/main.faec15a4.js",
-    "static/js/453.a7d397a0.chunk.js": "/PGHT-V2/static/js/453.a7d397a0.chunk.js",
-    "static/media/logo.png": "/PGHT-V2/static/media/logo.0e48c4ad0c4279835f2f.png",
-    "index.html": "/PGHT-V2/index.html",
-    "main.d9da1378.css.map": "/PGHT-V2/static/css/main.d9da1378.css.map",
-    "main.faec15a4.js.map": "/PGHT-V2/static/js/main.faec15a4.js.map",
-    "453.a7d397a0.chunk.js.map": "/PGHT-V2/static/js/453.a7d397a0.chunk.js.map"
+    "main.css": "/PGHT-Web/static/css/main.c73f53ca.css",
+    "main.js": "/PGHT-Web/static/js/main.103bb81e.js",
+    "static/js/453.a7d397a0.chunk.js": "/PGHT-Web/static/js/453.a7d397a0.chunk.js",
+    "static/media/logo.png": "/PGHT-Web/static/media/logo.0e48c4ad0c4279835f2f.png",
+    "index.html": "/PGHT-Web/index.html",
+    "main.c73f53ca.css.map": "/PGHT-Web/static/css/main.c73f53ca.css.map",
+    "main.103bb81e.js.map": "/PGHT-Web/static/js/main.103bb81e.js.map",
+    "453.a7d397a0.chunk.js.map": "/PGHT-Web/static/js/453.a7d397a0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9da1378.css",
-    "static/js/main.faec15a4.js"
+    "static/css/main.c73f53ca.css",
+    "static/js/main.103bb81e.js"
   ]
 }
