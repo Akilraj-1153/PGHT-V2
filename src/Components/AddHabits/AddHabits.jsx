@@ -59,7 +59,7 @@ function AddHabits() {
     }
 
     const currentDate = new Date().toISOString(); // Get current date and time in ISO format
-    updatedHabits[selectedHabits] = { AddedAt: currentDate ,Date:[] }; // Store the habit with the current date and time
+    updatedHabits[selectedHabits] = { AddedAt: currentDate ,Date:[],NotifyTime:'' }; // Store the habit with the current date and time
     setAllHabits(updatedHabits);
 
     try {
