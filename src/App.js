@@ -13,6 +13,7 @@ import { LoginState } from './HandleData/atoms'
 import { useEffect } from 'react'
 import MainApp from './Components/3 MainApp/MainApp'
 import CheckConnection from './Components/Network/CheckConnection'
+import offlineimg from './Assets/offline-icon.png'
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <CheckConnection>
+    <CheckConnection img={offlineimg}>
   <ImageContext.Provider value={logo}>
       <div className='h-screen w-screen  bg-black text-white'>
         <Routes>
