@@ -25,6 +25,15 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>PGHT</title>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(function(OneSignal) {
+        OneSignal.init({
+          appId: "2247f176-0a44-473d-985a-8ad111a31b8c",
+        });
+      });
+    </script>
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // MIT License
