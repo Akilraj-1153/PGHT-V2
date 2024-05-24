@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../Config/Config';
 import { myHabits, selectedHabitsforReport } from '../../HandleData/atoms';
+import { setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { IoMdCloseCircle } from "react-icons/io";
-import { FaBell } from "react-icons/fa";
 
 function HabitReport({ habit }) {
   const [selectedDates, setSelectedDates] = useState([]);
@@ -17,8 +16,7 @@ function HabitReport({ habit }) {
   const [AllHabits, setAllHabits] = useRecoilState(myHabits);
   const [HabitForReport, setHabitForReport] = useRecoilState(selectedHabitsforReport);
   const [dataFetched, setDataFetched] = useState(false);
-  const [isNotify, setIsNotify] = useState(false);
-  const [notifyTime, setNotifyTime] = useState('');
+
 
   useEffect(() => {
     fetchHabitData();
@@ -43,7 +41,6 @@ function HabitReport({ habit }) {
         const habitData = docSnap.data().Habits || {};
         if (habitData[HabitForReport]) {
           setSelectedDates(habitData[HabitForReport].Date || []);
-          setNotifyTime(habitData[HabitForReport].NotifyTime || '');
           setAllHabits(habitData);
           setDataFetched(true);
         }
@@ -68,7 +65,7 @@ function HabitReport({ habit }) {
   const saveDatesToFirestore = async () => {
     const userEmail = JSON.parse(localStorage.getItem('user')).email;
     const docRef = doc(db, 'HabitDetails', userEmail);
-    const data = { ...AllHabits, [HabitForReport]: { ...AllHabits[HabitForReport], Date: selectedDates, NotifyTime: notifyTime } };
+    const data = { ...AllHabits, [HabitForReport]: { ...AllHabits[HabitForReport], Date: selectedDates } };
     try {
       await setDoc(docRef, { Habits: data });
     } catch (error) {
@@ -94,93 +91,48 @@ function HabitReport({ habit }) {
     }
   };
 
-  const handleNotifyTimeSave = async () => {
-    await saveDatesToFirestore();
-    setIsNotify(false);
-    toast.success('Notification time saved successfully!', { autoClose: 2000 });
-  };
-
-  const handleNotifyTimeChange = (event) => {
-    setNotifyTime(event.target.value);
-  };
-
   return (
     <div className="habit-report text-center h-full w-full rounded-xl p-2 overflow-hidden">
-      {!isNotify && (
-        <>
-          <div className='h-[3vh] w-full flex justify-end items-end'>
-            <button className='' onClick={() => setHabitForReport(null)}><IoMdCloseCircle size='20' color='white'/></button>
-          </div>
-          <div className='h-fit lg:h-1/3 w-full gap-2 flex justify-center items-center flex-col'>
-            <div className='flex gap-5 w-full h-full justify-center items-center'>
-              <h2 className="text-lg font-bold w-fit">{habit} Report</h2>
-              <button className='h-fit  text-md md:text-2xl font-bold border-2 border-blue-500 p-2 rounded-md w-fit text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300' onClick={() => deleteHabit(habit)}>Delete</button>
-              <button className='h-fit  text-md md:text-2xl font-bold border-2 border-blue-500 p-2 rounded-md w-fit text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300' onClick={() => setIsNotify(true)}>
-                <FaBell />
-              </button>
-            </div>
-            <div className="intro-text text-sm lg:text-md mb-6 w-full">
-              <p>Track your progress for {habit} habit below. Click on each day to mark it as followed or not followed.</p>
-            </div>
-          </div>
-          <div className='h-2/3 w-full'>
-            <div className="calendar myhabit w-full h-full overflow-scroll">
-              <div className="month">
-                <h3 className="rounded-xl text-xl font-semibold mb-2">
-                  {currentTime.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} {currentTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })} {currentTime.getFullYear()}
-                </h3>
-                <div className="days grid grid-cols-4 md:grid-cols-7 gap-1">
-                  {[...Array(new Date(currentTime.getFullYear(), currentTime.getMonth() + 1, 0).getDate())].map((_, dayIndex) => {
-                    const date = new Date(currentTime.getFullYear(), currentTime.getMonth(), dayIndex + 1).toLocaleDateString();
-                    const isMarked = isDateSelected(date);
-                    const buttonColor = isMarked ? 'bg-green-500' : 'bg-gray-500';
-
-                    return (
-                      <div key={dayIndex} className="day flex flex-col justify-center items-center cursor-pointer" onClick={() => handleDateClick(date)}>
-                        <div className={`rounded-md border-2 w-3/4 shadow-xl p-2 ${buttonColor}`}>
-                          {dayIndex + 1}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              {totalDays === 0 ? (
-                <div className="empty-state-message text-gray-600 mt-8">
-                  <p>No progress tracked yet. Start tracking your habit now!</p>
-                </div>
-              ) : (
-                <div className="total-days mt-4">Total Days Followed: {totalDays}</div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-      {isNotify && (
-        <div className='text-black flex justify-center items-center h-full w-full flex gap-5 flex-col'>
-          <input
-            type='time'
-            className='outline-none p-2'
-            value={notifyTime}
-            onChange={handleNotifyTimeChange}
-          />
-          <p className='text-white'>You'll receive daily notifications at the set time.</p>
-          <div className='flex gap-5'>
-            <button
-              className='h-fit  text-md md:text-2xl font-bold border-2 border-blue-500 p-2 rounded-md w-fit text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300'
-              onClick={handleNotifyTimeSave}
-            >
-              Save
-            </button>
-            <button
-              className='h-fit  text-md md:text-2xl font-bold border-2 border-blue-500 p-2 rounded-md w-fit text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300'
-              onClick={() => setIsNotify(false)}
-            >
-              Close
-            </button>
-          </div>
+      <div className='h-fit lg:h-1/3 w-full gap-2 flex justify-center items-center flex-col'>
+        <div className='flex gap-5 w-full h-full justify-center items-center'>
+          <h2 className="text-lg font-bold w-fit">{habit} Report</h2>
+          <button className='h-fit  text-md md:text-2xl font-bold border-2 border-blue-500 p-2 rounded-md w-fit text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300' onClick={() => deleteHabit(habit)}>Delete</button>
+          <button className='h-fit  text-md md:text-2xl font-bold border-2 border-blue-500 p-2 rounded-md w-fit text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300' onClick={() => setHabitForReport(null)}>Close</button>
         </div>
-      )}
+        <div className="intro-text text-sm lg:text-md mb-6 w-full">
+          <p>Track your progress for {habit} habit below. Click on each day to mark it as followed or not followed.</p>
+        </div>
+      </div>
+
+      <div className='h-2/3 w-full'>
+        <div className="calendar myhabit w-full h-full overflow-scroll">
+          <div className="month">
+            <h3 className="rounded-xl text-xl font-semibold mb-2">{currentTime.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} {currentTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })} {currentTime.getFullYear()}</h3>
+            <div className="days grid grid-cols-4 md:grid-cols-7 gap-1">
+              {[...Array(new Date(currentTime.getFullYear(), currentTime.getMonth() + 1, 0).getDate())].map((_, dayIndex) => {
+                const date = new Date(currentTime.getFullYear(), currentTime.getMonth(), dayIndex + 1).toLocaleDateString();
+                const isMarked = isDateSelected(date);
+                const buttonColor = isMarked ? 'bg-green-500' : 'bg-gray-500';
+
+                return (
+                  <div key={dayIndex} className="day flex flex-col justify-center items-center cursor-pointer" onClick={() => handleDateClick(date)}>
+                    <div className={`rounded-md border-2 w-3/4 shadow-xl p-2 ${buttonColor}`}>
+                      {dayIndex + 1}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          {totalDays === 0 ? (
+            <div className="empty-state-message text-gray-600 mt-8">
+              <p>No progress tracked yet. Start tracking your habit now!</p>
+            </div>
+          ) : (
+            <div className="total-days mt-4">Total Days Followed: {totalDays}</div>
+          )}
+        </div>
+      </div>
       <ToastContainer />
     </div>
   );
